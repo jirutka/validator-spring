@@ -37,6 +37,11 @@
         <connection>scm:git:git@github.com:jirutka/validator-spring.git</connection>
     </scm>
 
+    <ciManagement>
+        <system>travis</system>
+		<url>https://travis-ci.org/jirutka/validator-spring/</url>
+    </ciManagement>
+
     <distributionManagement>
         <repository>
             <id>cvut-libs-release-local</id>

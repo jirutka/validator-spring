@@ -1,4 +1,4 @@
-JSR-303 Validator using Spring Expression Language (SpEL)
+JSR-303 Validator using Spring Expression Language (SpEL) [![Build Status](https://travis-ci.org/jirutka/validator-spring.png)](https://travis-ci.org/jirutka/validator-spring)
 =========================================================
 
 This library provides JSR-303 validation constraint with which you can use
