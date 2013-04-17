@@ -63,7 +63,7 @@ Maven
 <dependency>
     <groupId>cz.jirutka.validator</groupId>
     <artifactId>validator-spring</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 </dependency>
 
 <repository>
