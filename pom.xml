@@ -4,13 +4,19 @@
 
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>cz.jirutka.maven</groupId>
+        <artifactId>root-parent</artifactId>
+        <version>1.0</version>
+    </parent>
+
+
+    <!--//////////////////// ABOUT ////////////////////-->
+
     <groupId>cz.jirutka.validator</groupId>
     <artifactId>validator-spring</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
-
-
-    <!--//////////////////// ABOUT ////////////////////-->
 
     <name>validator-spring</name>
     <description>JSR-303 Validator using Spring Expression Language</description>
@@ -21,10 +27,13 @@
         <developer>
             <name>Jakub Jirutka</name>
             <email>jakub@jirutka.cz</email>
-            <organization>CVUT</organization>
+            <organization>CTU in Prague</organization>
             <organizationUrl>http://www.cvut.cz</organizationUrl>
         </developer>
     </developers>
+
+
+    <!--//////////////////// DISTRIBUTION ////////////////////-->
 
     <licenses>
         <license>
@@ -43,27 +52,6 @@
 		<url>https://travis-ci.org/jirutka/validator-spring/</url>
     </ciManagement>
 
-    <distributionManagement>
-        <repository>
-            <id>sonatype-staging</id>
-            <name>Sonatype repository for staging releases for Maven Central</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-        </repository>
-
-        <snapshotRepository>
-            <id>sonatype-snapshots</id>
-            <name>Sonatype repository for deploying snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
-
-
-    <!--//////////////////// PROPERTIES ////////////////////-->
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
 
     <!--//////////////////// DEPENDENCIES ////////////////////-->
 
@@ -81,12 +69,6 @@
             <artifactId>spring-expression</artifactId>
             <!-- minimal suitable version -->
             <version>3.0.5.RELEASE</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.6.6</version>
         </dependency>
 
         <!--//// Test ////-->
@@ -116,82 +98,9 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>1.6.6</version>
+            <version>${slf4j.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-
-    <!--//////////////////// BUILD ////////////////////-->
-
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.6</version>
-                <configuration>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
-    
-    <!--//////////////////// PROFILES ////////////////////-->
-
-    <profiles>
-        <profile>
-            <id>deploy-profile</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <version>2.2.1</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <plugin>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>2.9</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <plugin>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.4</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 
 </project>
