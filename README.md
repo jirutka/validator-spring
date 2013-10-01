@@ -1,8 +1,8 @@
-JSR-303 Validator using Spring Expression Language (SpEL) [![Build Status](https://travis-ci.org/jirutka/validator-spring.png)](https://travis-ci.org/jirutka/validator-spring) [![Coverage Status](https://coveralls.io/repos/jirutka/validator-spring/badge.png)](https://coveralls.io/r/jirutka/validator-spring)
+JSR-303 Validator using SpEL [![Build Status](https://travis-ci.org/jirutka/validator-spring.png)](https://travis-ci.org/jirutka/validator-spring) [![Coverage Status](https://coveralls.io/repos/jirutka/validator-spring/badge.png)](https://coveralls.io/r/jirutka/validator-spring)
 =========================================================
 
 This library provides JSR-303 validation constraint with which you can use
-powerful [Spring Expression Language](http://static.springsource.org/spring/docs/current/spring-framework-reference/html/expressions.html)
+powerful **[Spring Expression Language](http://static.springsource.org/spring/docs/current/spring-framework-reference/html/expressions.html)**
 (SpEL) for non-trivial validations. It’s especially very useful for
 _cross-field validations_ which are very complicated with plain JSR-303.
 
