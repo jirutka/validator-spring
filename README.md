@@ -55,6 +55,15 @@ public final class Helpers {
 }
 ```
 
+```java
+public class Sample {
+
+    @SpELAssert(value = "#isEven(#this) && #this > 42",
+                helpers = Helpers.class)
+    private int count;
+}
+```
+
 
 Maven
 -----
