@@ -1,5 +1,6 @@
-JSR-303 Validator using SpEL [![Build Status](https://travis-ci.org/jirutka/validator-spring.png)](https://travis-ci.org/jirutka/validator-spring) [![Coverage Status](https://coveralls.io/repos/jirutka/validator-spring/badge.png)](https://coveralls.io/r/jirutka/validator-spring)
-=========================================================
+JSR-303 Validator using SpEL
+============================
+[![Build Status](https://travis-ci.org/jirutka/validator-spring.svg)](https://travis-ci.org/jirutka/validator-spring) [![Coverage Status](http://img.shields.io/coveralls/jirutka/validator-spring.svg)](https://coveralls.io/r/jirutka/validator-spring) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.validator/validator-spring/badge.svg)](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.validator/validator-spring)
 
 This library provides JSR-303 validation constraint with which you can use
 powerful **[Spring Expression Language](http://static.springsource.org/spring/docs/current/spring-framework-reference/html/expressions.html)**
