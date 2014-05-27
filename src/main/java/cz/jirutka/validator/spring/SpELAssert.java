@@ -75,7 +75,7 @@ public @interface SpELAssert {
     Class<?>[] helpers() default { };
     
     /**
-     * Defines several <code>@FieldMatch</code> annotations on the same element
+     * Defines several <code>@SpELAssertValidator</code> annotations on the same element
      *
      * @see FieldMatch
      */
