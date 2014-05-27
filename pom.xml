@@ -15,7 +15,7 @@
 
     <groupId>cz.jirutka.validator</groupId>
     <artifactId>validator-spring</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <name>validator-spring</name>
@@ -51,6 +51,11 @@
         <system>travis</system>
         <url>https://travis-ci.org/jirutka/validator-spring/</url>
     </ciManagement>
+
+    <issueManagement>
+        <system>github</system>
+        <url>http://github.com/jirutka/validator-spring/issues</url>
+    </issueManagement>
 
 
     <!--//////////////////// DEPENDENCIES ////////////////////-->
