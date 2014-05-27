@@ -23,14 +23,17 @@
  */
 package cz.jirutka.validator.spring;
 
-import javax.validation.Constraint;
-import javax.validation.Payload;
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.TYPE;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+import javax.validation.Constraint;
+import javax.validation.Payload;
 
 /**
  * JSR-303 constraint for validation with Spring Expression Language (SpEL).
@@ -70,4 +73,17 @@ public @interface SpELAssert {
      * name will be used!
      */
     Class<?>[] helpers() default { };
+    
+    /**
+     * Defines several <code>@SpELAssertValidator</code> annotations on the same element
+     *
+     * @see FieldMatch
+     */
+    @Target({METHOD, FIELD, TYPE})
+    @Retention(RUNTIME)
+    @Documented
+            @interface List
+    {
+    	SpELAssert[] value();
+    }
 }
