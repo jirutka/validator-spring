@@ -31,7 +31,7 @@ import java.util.List;
 /**
  * @author Jakub Jirutka <jakub@jirutka.cz>
  */
-public class ReflectionUtils {
+public abstract class ReflectionUtils {
 
     public static List<Method> extractStaticMethods(Class<?> clazz) {
         Method[] allMethods = clazz.getMethods();
@@ -44,6 +44,4 @@ public class ReflectionUtils {
         }
         return staticMethods;
     }
-
-    private ReflectionUtils() { }
 }

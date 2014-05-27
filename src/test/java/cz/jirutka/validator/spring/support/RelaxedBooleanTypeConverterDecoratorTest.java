@@ -42,7 +42,7 @@ import static org.testng.Assert.*;
  */
 public class RelaxedBooleanTypeConverterDecoratorTest {
 
-    private static final TypeDescriptor 
+    private static final TypeDescriptor
             BOOLEAN_TYPE = TypeDescriptor.valueOf(Boolean.class),
             NUMBER_TYPE = TypeDescriptor.valueOf(Number.class),
             COLLECTION_TYPE = TypeDescriptor.valueOf(Collection.class),

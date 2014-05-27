@@ -34,7 +34,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * JSR-303 constraint for validation with Spring Expression Language (SpEL).
- * 
+ *
  * @author Jakub Jirutka <jakub@jirutka.cz>
  */
 @Documented

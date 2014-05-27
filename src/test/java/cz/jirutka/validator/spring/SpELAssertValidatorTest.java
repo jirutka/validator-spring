@@ -92,7 +92,8 @@ public class SpELAssertValidatorTest {
 
         String message = isNullOrEmpty(applyIf)
                 ? String.format("if '%s', then entity [%s] should be valid", expression, entity)
-                : String.format("if ('%1$s' and '%2$s') or not('%1$s'), then entity [%3$s] should be valid", applyIf, expression, entity);
+                : String.format("if ('%1$s' and '%2$s') or not('%1$s'), then entity [%3$s] should be valid",
+                                applyIf, expression, entity);
 
         if (! validator.validate(entity).isEmpty()) {
             fail(message);
@@ -109,7 +110,8 @@ public class SpELAssertValidatorTest {
 
         String message = isNullOrEmpty(applyIf)
                 ? String.format("if '%s', then entity [%s] should *not* be valid", expression, entity)
-                : String.format("if ('%1$s' and '%2$s') or not('%1$s'), then entity [%3$s] should *not* be valid", applyIf, expression, entity);
+                : String.format("if ('%1$s' and '%2$s') or not('%1$s'), then entity [%3$s] should *not* be valid",
+                                applyIf, expression, entity);
 
         if (validator.validate(entity).isEmpty()) {
             fail(message);

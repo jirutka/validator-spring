@@ -7,7 +7,7 @@
     <parent>
         <groupId>cz.jirutka.maven</groupId>
         <artifactId>root-parent</artifactId>
-        <version>1.0</version>
+        <version>1.1.6</version>
     </parent>
 
 
@@ -19,7 +19,7 @@
     <packaging>jar</packaging>
 
     <name>validator-spring</name>
-    <description>JSR-303 Validator using Spring Expression Language</description>
+    <description>Bean Validator using Spring Expression Language</description>
     <url>http://github.com/jirutka/validator-spring</url>
     <inceptionYear>2013</inceptionYear>
 
@@ -49,7 +49,7 @@
 
     <ciManagement>
         <system>travis</system>
-		<url>https://travis-ci.org/jirutka/validator-spring/</url>
+        <url>https://travis-ci.org/jirutka/validator-spring/</url>
     </ciManagement>
 
 
