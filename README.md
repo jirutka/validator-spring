@@ -1,11 +1,12 @@
-JSR-303 Validator using SpEL
-============================
-[![Build Status](https://travis-ci.org/jirutka/validator-spring.svg)](https://travis-ci.org/jirutka/validator-spring) [![Coverage Status](http://img.shields.io/coveralls/jirutka/validator-spring.svg)](https://coveralls.io/r/jirutka/validator-spring) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.validator/validator-spring/badge.svg)](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.validator/validator-spring)
+Bean Validator utilizing SpEL
+=============================
+[![Build Status](https://travis-ci.org/jirutka/validator-spring.svg)](https://travis-ci.org/jirutka/validator-spring)
+[![Coverage Status](http://img.shields.io/coveralls/jirutka/validator-spring.svg)](https://coveralls.io/r/jirutka/validator-spring)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.validator/validator-spring/badge.svg)](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.validator/validator-spring)
 
-This library provides JSR-303 validation constraint with which you can use
-powerful **[Spring Expression Language](http://static.springsource.org/spring/docs/current/spring-framework-reference/html/expressions.html)**
-(SpEL) for non-trivial validations. It’s especially very useful for
-_cross-field validations_ which are very complicated with plain JSR-303.
+This library provides [Bean Validation] \(JSR 303/349) constraint that allows to use powerful
+**[Spring Expression Language]** \(SpEL) for non-trivial validations. It’s especially very useful for _cross-field
+validations_ that are very complicated with a plain Bean Validation.
 
 
 Usage examples
@@ -97,3 +98,7 @@ License
 -------
 
 This project is licensed under [MIT license](http://opensource.org/licenses/MIT).
+
+
+[Bean Validation]: http://beanvalidation.org/1.1/spec/
+[Spring Expression Language]: http://static.springsource.org/spring/docs/current/spring-framework-reference/html/expressions.html
