@@ -70,4 +70,17 @@ public @interface SpELAssert {
      * name will be used!
      */
     Class<?>[] helpers() default { };
+
+
+    /**
+     * Defines several <code>@SpELAssertValidator</code> annotations on the same element.
+     *
+     * @see SpELAssert
+     */
+    @Documented
+    @Retention(RUNTIME)
+    @Target({METHOD, FIELD, TYPE})
+    @interface List {
+        SpELAssert[] value();
+    }
 }
