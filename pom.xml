@@ -58,6 +58,14 @@
     </issueManagement>
 
 
+    <!--//////////////////// PROPERTIES ////////////////////-->
+
+    <properties>
+        <!-- A minimal suitable version of Spring. -->
+        <spring.version>3.0.5.RELEASE</spring.version>
+    </properties>
+
+
     <!--//////////////////// DEPENDENCIES ////////////////////-->
 
     <dependencies>
@@ -72,8 +80,31 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-expression</artifactId>
-            <!-- minimal suitable version -->
-            <version>3.0.5.RELEASE</version>
+            <version>${spring.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>commons-logging</groupId>

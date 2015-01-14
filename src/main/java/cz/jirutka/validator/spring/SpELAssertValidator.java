@@ -26,10 +26,9 @@ package cz.jirutka.validator.spring;
 import cz.jirutka.validator.spring.support.RelaxedBooleanTypeConverterDecorator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.expression.EvaluationContext;
-import org.springframework.expression.Expression;
-import org.springframework.expression.ExpressionParser;
-import org.springframework.expression.TypeConverter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.expression.*;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 import org.springframework.expression.spel.support.StandardTypeConverter;
@@ -60,6 +59,8 @@ public class SpELAssertValidator implements ConstraintValidator<SpELAssert, Obje
     private Expression applyIfExpression;
     private List<Method> functions = new LinkedList<>();
 
+    @Autowired
+    private ApplicationContext applicationContext;
 
     public void initialize(SpELAssert constraint) {
         ExpressionParser parser = new SpelExpressionParser();
@@ -103,6 +104,14 @@ public class SpELAssertValidator implements ConstraintValidator<SpELAssert, Obje
 
         context.setRootObject(rootObject);
         context.setTypeConverter(TYPE_CONVERTER);
+        if (applicationContext != null) {
+            context.setBeanResolver(new BeanResolver() {
+                @Override
+                public Object resolve(EvaluationContext evaluationContext, String beanName) throws AccessException {
+                    return applicationContext.getBean(beanName);
+                }
+            });
+        }
 
         if (! functions.isEmpty()) {
             for (Method helper : functions) {

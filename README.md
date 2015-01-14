@@ -66,6 +66,19 @@ public class Sample {
 }
 ```
 
+```java
+// Configuration is needed to allow autowiring of dependencies in custom validators.
+@Bean
+public LocalValidatorFactoryBean localValidatorFactoryBean() {
+    return new LocalValidatorFactoryBean();
+}
+
+public class Sample {
+
+    @SpELAssert("@myService.calculate(#this) > 42")
+    private int value;
+}
+```
 
 Maven
 -----
