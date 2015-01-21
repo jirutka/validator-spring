@@ -60,6 +60,10 @@ public class SpELAssertValidator implements ConstraintValidator<SpELAssert, Obje
     private List<Method> functions = new LinkedList<>();
 
     @Autowired
+    public void setApplicationContext(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
+
     private ApplicationContext applicationContext;
 
     public void initialize(SpELAssert constraint) {
