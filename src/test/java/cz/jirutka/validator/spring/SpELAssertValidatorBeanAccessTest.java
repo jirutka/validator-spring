@@ -33,7 +33,7 @@ public class SpELAssertValidatorBeanAccessTest implements ConstraintValidatorFac
     }
 
     @Test
-    public void test_valid_service_cll() {
+    public void test_valid_service_call() {
         Set<ConstraintViolation<MockBean>> constraintViolations = validator.validate(new MockBean("VALID"));
 
         assertThat(constraintViolations.size(), is(0));
