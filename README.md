@@ -12,6 +12,8 @@ validations_ that are very complicated with a plain Bean Validation.
 Usage examples
 --------------
 
+### Cross-field validation
+
 ```java
 @SpELAssert(value = "hasRedirectUris()", applyIf = "grantTypes.contains('auth_code')",
             message = "{validator.missing_redirect_uri}")
@@ -37,6 +39,8 @@ public class User {
 }
 ```
 
+### Using helper functions
+
 ```java
 @SpELAssert(value = "#isEven(count) && count > 42", applyIf = "enabled",
             helpers = Helpers.class)
@@ -44,16 +48,6 @@ public class Sample {
 
     private int count;
     private boolean enabled;
-}
-
-public final class Helpers {
-
-    public static boolean isEven(int value) {
-        return value % 2 == 0;
-    }
-    public static boolean isOdd(int value) {
-        return value % 2 != 0;
-    }
 }
 ```
 
@@ -67,16 +61,36 @@ public class Sample {
 ```
 
 ```java
-// Configuration is needed to allow autowiring of dependencies in custom validators.
-@Bean
-public LocalValidatorFactoryBean localValidatorFactoryBean() {
-    return new LocalValidatorFactoryBean();
-}
+public final class Helpers {
 
+    public static boolean isEven(int value) {
+        return value % 2 == 0;
+    }
+    public static boolean isOdd(int value) {
+        return value % 2 != 0;
+    }
+}
+```
+
+### Using Spring beans
+
+```java
 public class Sample {
 
     @SpELAssert("@myService.calculate(#this) > 42")
     private int value;
+}
+```
+
+```java
+// Configuration is needed to allow autowiring of dependencies in custom validators.
+@Configuration
+public class ValidatorConfig {
+
+    @Bean
+    public LocalValidatorFactoryBean validatorFactoryBean() {
+        return new LocalValidatorFactoryBean();
+    }
 }
 ```
 
