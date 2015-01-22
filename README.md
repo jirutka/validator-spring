@@ -1,8 +1,8 @@
 Bean Validator utilizing SpEL
 =============================
-[![Build Status](https://travis-ci.org/jirutka/validator-spring.svg)](https://travis-ci.org/jirutka/validator-spring)
-[![Coverage Status](http://img.shields.io/coveralls/jirutka/validator-spring.svg)](https://coveralls.io/r/jirutka/validator-spring)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.validator/validator-spring/badge.svg)](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.validator/validator-spring)
+[![Build Status](https://travis-ci.org/jirutka/validator-spring.svg?branch=master)](https://travis-ci.org/jirutka/validator-spring)
+[![Coverage Status](http://img.shields.io/coveralls/jirutka/validator-spring.svg?style=flat)](https://coveralls.io/r/jirutka/validator-spring)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.validator/validator-spring/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.validator/validator-spring)
 
 This library provides [Bean Validation] \(JSR 303/349) constraint that allows to use powerful
 **[Spring Expression Language]** \(SpEL) for non-trivial validations. It’s especially very useful for _cross-field
