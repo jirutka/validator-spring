@@ -56,16 +56,16 @@ class RelaxedBooleanTypeConverterDecoratorTest extends Specification {
         expect:
             converter.convertValue(value, type(value.class), type(Boolean)) == expected
         where:
-            value               | expected
-            0                   | false
-            1                   | true
-            42                  | true
-            0L                  | false
-            1L                  | true
-            []                  | false
-            ['list']            | true
-            [].toArray()        | false
-            ['array'].toArray() | true
+            value               || expected
+            0                   || false
+            1                   || true
+            42                  || true
+            0L                  || false
+            1L                  || true
+            []                  || false
+            ['list']            || true
+            [].toArray()        || false
+            ['array'].toArray() || true
     }
 
     def 'convertValue: delegates to parent when target type is not boolean'() {
