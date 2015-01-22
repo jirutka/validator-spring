@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2013 Jakub Jirutka <jakub@jirutka.cz>.
+ * Copyright 2013-2015 Jakub Jirutka <jakub@jirutka.cz>.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package cz.jirutka.validator.spring.support;
+package cz.jirutka.validator.spring;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -31,7 +31,7 @@ import java.util.List;
 /**
  * @author Jakub Jirutka <jakub@jirutka.cz>
  */
-public abstract class ReflectionUtils {
+abstract class ReflectionUtils {
 
     public static List<Method> extractStaticMethods(Class<?> clazz) {
         Method[] allMethods = clazz.getMethods();

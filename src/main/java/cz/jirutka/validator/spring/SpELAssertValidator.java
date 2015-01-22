@@ -45,7 +45,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import static cz.jirutka.validator.spring.support.ReflectionUtils.extractStaticMethods;
+import static cz.jirutka.validator.spring.ReflectionUtils.extractStaticMethods;
 import static org.springframework.util.StringUtils.hasText;
 
 /**
