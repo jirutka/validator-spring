@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2013 Jakub Jirutka <jakub@jirutka.cz>.
+ * Copyright 2013-2015 Jakub Jirutka <jakub@jirutka.cz>.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,9 +26,13 @@ package cz.jirutka.validator.spring;
 import cz.jirutka.validator.spring.support.RelaxedBooleanTypeConverterDecorator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.expression.*;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
+import org.springframework.context.expression.BeanFactoryResolver;
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.TypeConverter;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 import org.springframework.expression.spel.support.StandardTypeConverter;
@@ -49,7 +53,7 @@ import static org.springframework.util.StringUtils.hasText;
  *
  * @author Jakub Jirutka <jakub@jirutka.cz>
  */
-public class SpELAssertValidator implements ConstraintValidator<SpELAssert, Object> {
+public class SpELAssertValidator implements ConstraintValidator<SpELAssert, Object>, BeanFactoryAware {
 
     private static final Logger LOG = LoggerFactory.getLogger(SpELAssertValidator.class);
     private static final TypeConverter TYPE_CONVERTER
@@ -58,9 +62,8 @@ public class SpELAssertValidator implements ConstraintValidator<SpELAssert, Obje
     private Expression expression;
     private Expression applyIfExpression;
     private List<Method> functions = new LinkedList<>();
+    private BeanFactory beanFactory;
 
-    @Autowired
-    private ApplicationContext applicationContext;
 
     public void initialize(SpELAssert constraint) {
         ExpressionParser parser = new SpelExpressionParser();
@@ -86,6 +89,10 @@ public class SpELAssertValidator implements ConstraintValidator<SpELAssert, Obje
         return true;
     }
 
+    public void setBeanFactory(BeanFactory beanFactory) {
+        this.beanFactory = beanFactory;
+    }
+
 
     private boolean isApplyIfValid(EvaluationContext context) {
         if (applyIfExpression == null) return true;
@@ -104,15 +111,10 @@ public class SpELAssertValidator implements ConstraintValidator<SpELAssert, Obje
 
         context.setRootObject(rootObject);
         context.setTypeConverter(TYPE_CONVERTER);
-        if (applicationContext != null) {
-            context.setBeanResolver(new BeanResolver() {
-                @Override
-                public Object resolve(EvaluationContext evaluationContext, String beanName) throws AccessException {
-                    return applicationContext.getBean(beanName);
-                }
-            });
-        }
 
+        if (beanFactory != null) {
+            context.setBeanResolver(new BeanFactoryResolver(beanFactory));
+        }
         if (! functions.isEmpty()) {
             for (Method helper : functions) {
                 context.registerFunction(helper.getName(), helper);
