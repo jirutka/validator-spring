@@ -26,6 +26,7 @@ package cz.jirutka.validator.spring
 import groovy.transform.CompileStatic
 import org.hibernate.validator.HibernateValidator
 import org.hibernate.validator.cfg.ConstraintDef
+import org.springframework.beans.factory.BeanFactory
 import spock.lang.Specification
 import spock.lang.Unroll
 
@@ -33,6 +34,9 @@ import javax.validation.Validation
 
 @Unroll
 class SpELAssertValidatorIT extends Specification {
+
+    def beanFactory = Mock(BeanFactory)
+
 
     def "validate #entity with @SpELAssert(value = '#value')"() {
         given:
@@ -83,6 +87,20 @@ class SpELAssertValidatorIT extends Specification {
             "#isEven(a)"          | [a: 1]      || false
     }
 
+    def "validate #entity with @SpELAssert(value = '#value') using Spring bean"() {
+        setup:
+            def constraint = new SpELAssertDef(value: value)
+            def validator = createValidator(StubEntity, constraint, true)
+        and:
+            1 * beanFactory.getBean('stubBean') >> new StubBean()
+        expect:
+            validator.validate(entity as StubEntity).isEmpty() == expected
+        where:
+            value                      | entity         || expected
+            '@stubBean.isValid(#this)' | [a: 42, b: 42] || true
+            '@stubBean.isValid(#this)' | [a: 66, b: 42] || false
+    }
+
 
     ////////// Helpers //////////
 
@@ -90,11 +108,16 @@ class SpELAssertValidatorIT extends Specification {
         createValidator(StubEntity, constraintDef).validate(entity).isEmpty()
     }
 
-    def createValidator(Class type, ConstraintDef constraint) {
+    def createValidator(Class type, ConstraintDef constraint, boolean customConstraintFactory = false) {
         def cfg = Validation.byProvider(HibernateValidator).configure()
         cfg.addMapping( cfg.createConstraintMapping().with { mapping ->
             mapping.type(type).constraint(constraint); mapping
         })
+        if (customConstraintFactory) {
+            cfg.constraintValidatorFactory {
+                new SpELAssertValidator(beanFactory: beanFactory)
+            }
+        }
         cfg.buildValidatorFactory().validator
     }
 
@@ -133,6 +156,14 @@ class SpELAssertValidatorIT extends Specification {
 
         String sayHello(String name) {
             "hello, ${name}!"
+        }
+    }
+
+    @CompileStatic
+    static class StubBean {
+
+        boolean isValid(StubEntity entity) {
+            entity.a == entity.b
         }
     }
 
