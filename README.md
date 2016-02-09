@@ -2,6 +2,7 @@ Bean Validator utilizing SpEL
 =============================
 [![Build Status](https://travis-ci.org/jirutka/validator-spring.svg?branch=master)](https://travis-ci.org/jirutka/validator-spring)
 [![Coverage Status](http://img.shields.io/coveralls/jirutka/validator-spring.svg?style=flat)](https://coveralls.io/r/jirutka/validator-spring)
+[![Codacy code quality](https://api.codacy.com/project/badge/grade/3e4ab872dba9426ca74b49faccd8ad38)](https://www.codacy.com/app/jirutka/validator-spring)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.validator/validator-spring/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.validator/validator-spring)
 
 This library provides [Bean Validation] \(JSR 303/349) constraint that allows to use powerful
