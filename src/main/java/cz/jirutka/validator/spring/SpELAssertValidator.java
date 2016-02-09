@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2013-2015 Jakub Jirutka <jakub@jirutka.cz>.
+ * Copyright 2013-2016 Jakub Jirutka <jakub@jirutka.cz>.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -137,7 +137,7 @@ public class SpELAssertValidator implements ConstraintValidator<SpELAssert, Obje
         for (String name : names) {
             Object obj = context.lookupVariable(name);
             if (obj instanceof Method) {
-                message.append("     #").append(name).append(" -> ").append(obj).append("\n");
+                message.append("     #").append(name).append(" -> ").append(obj).append('\n');
             }
         }
         return message.toString();
