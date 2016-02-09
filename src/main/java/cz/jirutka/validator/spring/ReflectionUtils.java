@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2013-2015 Jakub Jirutka <jakub@jirutka.cz>.
+ * Copyright 2013-2016 Jakub Jirutka <jakub@jirutka.cz>.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,10 @@ import java.util.List;
 /**
  * @author Jakub Jirutka <jakub@jirutka.cz>
  */
-abstract class ReflectionUtils {
+final class ReflectionUtils {
+
+    private ReflectionUtils() {}
+
 
     public static List<Method> extractStaticMethods(Class<?> clazz) {
         Method[] allMethods = clazz.getMethods();
