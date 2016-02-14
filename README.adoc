@@ -1,0 +1,146 @@
+= Bean Validator utilizing SpEL
+:source-language: java
+:name: validator-spring
+:version: 1.1.0
+:artifact-id: {name}
+:group-id: cz.jirutka.validator
+:gh-name: jirutka/{name}
+:gh-branch: master
+:codacy-id: 3e4ab872dba9426ca74b49faccd8ad38
+
+ifdef::env-github[]
+image:https://travis-ci.org/{gh-name}.svg?branch={gh-branch}[Build Status, link="https://travis-ci.org/{gh-name}"]
+image:https://coveralls.io/repos/github/{gh-name}/badge.svg?branch={gh-branch}[Coverage Status, link="https://coveralls.io/github/{gh-name}"]
+image:https://api.codacy.com/project/badge/grade/{codacy-id}[Code quality, link="https://www.codacy.com/app/{gh-name}"]
+image:https://maven-badges.herokuapp.com/maven-central/{group-id}/{artifact-id}/badge.svg[Maven Central, link="https://maven-badges.herokuapp.com/maven-central/{group-id}/{artifact-id}"]
+endif::env-github[]
+
+This library provides http://beanvalidation.org/1.1/spec/[Bean Validation] (JSR 303/349) constraint that allows to use powerful http://static.springsource.org/spring/docs/current/spring-framework-reference/html/expressions.html[*Spring Expression Language*] (SpEL) for non-trivial validations.
+It’s especially very useful for _cross-field validations_ that are very complicated with a plain Bean Validation.
+
+
+== Usage examples
+
+=== Cross-field validation
+
+[source]
+----
+@SpELAssert(value = "hasRedirectUris()", applyIf = "grantTypes.contains('auth_code')",
+            message = "{validator.missing_redirect_uri}")
+public class ClientDTO {
+
+	private Collection<String> grantTypes;
+	private Collection<String> redirectUris;
+
+    public boolean hasRedirectUris() {
+        return !redirectUris.isEmpty();
+    }
+}
+----
+
+[source]
+----
+@SpELAssert(value = "password.equals(passwordVerify)",
+            applyIf = "password || passwordVerify",
+            message = "{validator.passwords_not_same}")
+public class User {
+
+    private String password;
+    private String passwordVerify;
+}
+----
+
+=== Using helper functions
+
+[source]
+----
+@SpELAssert(value = "#isEven(count) && count > 42", applyIf = "enabled",
+            helpers = Helpers.class)
+public class Sample {
+
+    private int count;
+    private boolean enabled;
+}
+----
+
+[source]
+----
+public class Sample {
+
+    @SpELAssert(value = "#isEven(#this) && #this > 42",
+                helpers = Helpers.class)
+    private int count;
+}
+----
+
+[source]
+----
+public final class Helpers {
+
+    public static boolean isEven(int value) {
+        return value % 2 == 0;
+    }
+    public static boolean isOdd(int value) {
+        return value % 2 != 0;
+    }
+}
+----
+
+=== Using Spring beans
+
+[source]
+----
+public class Sample {
+
+    @SpELAssert("@myService.calculate(#this) > 42")
+    private int value;
+}
+----
+
+[source]
+----
+// Configuration is needed to allow autowiring of dependencies in custom validators.
+@Configuration
+public class ValidatorConfig {
+
+    @Bean
+    public LocalValidatorFactoryBean validatorFactoryBean() {
+        return new LocalValidatorFactoryBean();
+    }
+}
+----
+
+
+== Maven
+
+Released versions are available in The Central Repository.
+Just add this artifact to your project:
+
+[source, xml, subs="verbatim, attributes"]
+----
+<dependency>
+    <groupId>{group-id}</groupId>
+    <artifactId>{artifact-id}</artifactId>
+    <version>{version}</version>
+</dependency>
+----
+
+However if you want to use the last snapshot version, you have to add the Sonatype OSS repository:
+
+[source,xml]
+----
+<repository>
+    <id>sonatype-snapshots</id>
+    <name>Sonatype repository for deploying snapshots</name>
+    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    <snapshots>
+        <enabled>true</enabled>
+    </snapshots>
+</repository>
+----
+
+
+== License
+
+This project is licensed under http://opensource.org/licenses/MIT[MIT license].
+For the full text of the license, see the link:LICENSE[LICENSE] file.
