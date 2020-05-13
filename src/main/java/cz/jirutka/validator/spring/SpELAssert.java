@@ -26,6 +26,7 @@ package cz.jirutka.validator.spring;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.Documented;
+import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
@@ -41,6 +42,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 @Target({METHOD, FIELD, TYPE})
 @Constraint(validatedBy = SpELAssertValidator.class)
+@Repeatable(SpELAssert.List.class)
 public @interface SpELAssert {
 
     String message() default "{cz.jirutka.validator.spring.SpELAssert.message}";
